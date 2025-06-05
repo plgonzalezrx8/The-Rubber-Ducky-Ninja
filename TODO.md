@@ -6,14 +6,24 @@ This document lists all DuckyScript commands from the [Hak5 DuckyScript Quick Re
 
 The following commands are already implemented in the codebase:
 
-- STRING
+### Basic Commands
+
+- STRING (with constant substitution support)
+- STRINGLN (with constant substitution support)
 - ENTER
-- DELAY
+- DELAY (with constant substitution support)
 - DEFAULT_DELAY/DEFAULTDELAY
-- GUI/WINDOWS
-- ALT
-- CONTROL/CTRL
-- SHIFT
+- REM (comments and blank lines)
+
+### Modifier Keys
+
+- GUI/WINDOWS (with modifier support)
+- ALT (with function keys, letters, and arrow keys)
+- CONTROL/CTRL (with function keys, letters, and arrow keys)
+- SHIFT (with various key combinations)
+
+### Navigation and Special Keys
+
 - TAB
 - UP/UPARROW
 - DOWN/DOWNARROW
@@ -22,225 +32,195 @@ The following commands are already implemented in the codebase:
 - DELETE
 - SPACE
 - PRINTSCREEN
-- CAPS
+- APP/MENU (context menu key)
+
+### Advanced Features
+
+- CAPS (toggle)
 - REPLAY
-- REM
+- DEFINE (constants with # prefix)
+- VAR (variables with $ prefix - integers 0-65535 and booleans TRUE/FALSE)
 
 ## Commands To Implement
 
-### 1. STRINGLN
+### 1. Function Keys (F1-F12)
 
-**Description:** Types a string and presses ENTER
+**Description:** Presses function keys F1 through F12
+**Current Status:** Not implemented as standalone commands
+**Implementation Notes:**
+
+- Function keys work with modifier keys (ALT, CTRL, SHIFT) but not as standalone commands
+- Should be implemented in DuckyScriptProcessing.cs in the KeyboardAction method
+- Should use VirtualKeyCode.F1 through VirtualKeyCode.F12
+- Similar to other single key commands
+- High priority due to common usage
+
+### 2. ESCAPE (ESC)
+
+**Description:** Presses the ESC key
+**Current Status:** Partially implemented (works with CTRL modifier only)
+**Implementation Notes:**
+
+- Currently only works as CTRL ESC or CTRL ESCAPE
+- Need to implement as standalone ESC command
+- Should use VirtualKeyCode.ESCAPE
+- Similar to other single key commands
+
+### 3. Navigation Keys
+
+**Description:** HOME, END, INSERT, PAGEUP, PAGEDOWN
+**Current Status:** Not implemented as standalone commands
+**Implementation Notes:**
+
+- These work with SHIFT modifier but not as standalone commands
+- Should be implemented in KeyboardAction method
+- Should use appropriate VirtualKeyCode values
+- Medium priority
+
+### 4. Lock Keys
+
+**Description:** NUMLOCK, SCROLLLOCK
 **Current Status:** Not implemented
 **Implementation Notes:**
 
-- Currently implemented as separate STRING + ENTER commands
-- Should be implemented as a single command for better compatibility
-- Implementation should be in DuckyScriptProcessing.cs in the KeyboardAction method
-- Should handle the same string processing as STRING command but automatically append ENTER
+- Simple implementation in KeyboardAction method
+- Should use VirtualKeyCode.NUMLOCK and VirtualKeyCode.SCROLL
+- Similar to CAPS implementation (toggle functionality)
+- Low priority
 
-### 2. DEFINE
+### 5. BREAK and PAUSE as Standalone Commands
 
-**Description:** Defines a variable for use in the script
-**Current Status:** Not implemented
+**Description:** Presses the BREAK/PAUSE keys independently
+**Current Status:** Partially implemented (works with CTRL modifier only)
 **Implementation Notes:**
 
-- Requires adding a variable storage system
-- Need to implement variable substitution in STRING commands
-- Should be processed before script execution
-- Consider adding a Dictionary<string, string> to store variables
-- Implementation should handle both DEFINE and variable usage (e.g., #VARIABLE)
+- Currently only works as CTRL BREAK or CTRL PAUSE
+- Need standalone implementations
+- Should use VirtualKeyCode.CANCEL and VirtualKeyCode.PAUSE
+- Low priority
 
-### 3. REPEAT
+### 6. ALTCHAR and ALTSTRING
 
-**Description:** Repeats the last command a specified number of times
-**Current Status:** Not implemented
-**Implementation Notes:**
-
-- Similar to REPLAY but with different syntax
-- Should store last command and number of repeats
-- Implementation should be in DuckyScriptProcessing.cs
-- Consider merging with existing REPLAY functionality
-
-### 4. ALTCHAR
-
-**Description:** Types a character using ALT + numpad
+**Description:** Types characters/strings using ALT + numpad
 **Current Status:** Not implemented
 **Implementation Notes:**
 
 - Requires implementing ALT + numpad key combinations
 - Need to handle character to numpad code conversion
-- Should be implemented in DuckyScriptProcessing.cs
-- Consider adding a character to numpad code mapping
-
-### 5. ALTSTRING
-
-**Description:** Types a string using ALT + numpad
-**Current Status:** Not implemented
-**Implementation Notes:**
-
-- Similar to ALTCHAR but for entire strings
-- Should use ALTCHAR implementation
+- ALTCHAR for single characters, ALTSTRING for entire strings
 - Consider performance optimization for long strings
-- Implementation should be in DuckyScriptProcessing.cs
+- Medium priority for special character support
 
-### 6. ESCAPE
+### 7. Platform-Specific Commands
 
-**Description:** Presses the ESC key
+**Description:** COMMAND, OPTION (Mac), COMMANDSTRING
 **Current Status:** Not implemented
 **Implementation Notes:**
 
-- Simple implementation in KeyboardAction method
-- Should use VirtualKeyCode.ESCAPE
-- Similar to other single key commands
-
-### 7. HOME
-
-**Description:** Presses the HOME key
-**Current Status:** Not implemented
-**Implementation Notes:**
-
-- Simple implementation in KeyboardAction method
-- Should use VirtualKeyCode.HOME
-- Similar to other single key commands
-
-### 8. END
-
-**Description:** Presses the END key
-**Current Status:** Not implemented
-**Implementation Notes:**
-
-- Simple implementation in KeyboardAction method
-- Should use VirtualKeyCode.END
-- Similar to other single key commands
-
-### 9. INSERT
-
-**Description:** Presses the INSERT key
-**Current Status:** Not implemented
-**Implementation Notes:**
-
-- Simple implementation in KeyboardAction method
-- Should use VirtualKeyCode.INSERT
-- Similar to other single key commands
-
-### 10. NUMLOCK
-
-**Description:** Toggles the NUMLOCK key
-**Current Status:** Not implemented
-**Implementation Notes:**
-
-- Simple implementation in KeyboardAction method
-- Should use VirtualKeyCode.NUMLOCK
-- Similar to CAPS implementation
-
-### 11. SCROLLLOCK
-
-**Description:** Toggles the SCROLLLOCK key
-**Current Status:** Not implemented
-**Implementation Notes:**
-
-- Simple implementation in KeyboardAction method
-- Should use VirtualKeyCode.SCROLL
-- Similar to CAPS implementation
-
-### 12. BREAK
-
-**Description:** Presses the BREAK key
-**Current Status:** Not implemented
-**Implementation Notes:**
-
-- Simple implementation in KeyboardAction method
-- Should use VirtualKeyCode.CANCEL
-- Similar to other single key commands
-
-### 13. PAUSE
-
-**Description:** Presses the PAUSE key
-**Current Status:** Not implemented
-**Implementation Notes:**
-
-- Simple implementation in KeyboardAction method
-- Should use VirtualKeyCode.PAUSE
-- Similar to other single key commands
-
-### 14. F1-F12
-
-**Description:** Presses function keys F1 through F12
-**Current Status:** Not implemented
-**Implementation Notes:**
-
-- Simple implementation in KeyboardAction method
-- Should use VirtualKeyCode.F1 through VirtualKeyCode.F12
-- Similar to other single key commands
-
-### 15. APP
-
-**Description:** Presses the APP key (context menu)
-**Current Status:** Not implemented
-**Implementation Notes:**
-
-- Simple implementation in KeyboardAction method
-- Should use VirtualKeyCode.APPS
-- Similar to other single key commands
-
-### 16. MENU
-
-**Description:** Presses the MENU key (context menu)
-**Current Status:** Not implemented
-**Implementation Notes:**
-
-- Simple implementation in KeyboardAction method
-- Should use VirtualKeyCode.APPS
-- Similar to APP command
-
-### 17. WINDOWS
-
-**Description:** Presses the WINDOWS key
-**Current Status:** Not implemented (GUI is implemented instead)
-**Implementation Notes:**
-
-- Should be implemented as an alias for GUI
-- Consider updating documentation to reflect GUI as primary command
-
-### 18. COMMAND
-
-**Description:** Presses the COMMAND key (Mac)
-**Current Status:** Not implemented
-**Implementation Notes:**
-
-- Simple implementation in KeyboardAction method
-- Should use VirtualKeyCode.LWIN (same as GUI)
+- COMMAND should map to same as GUI (VirtualKeyCode.LWIN)
+- OPTION should map to same as ALT (VirtualKeyCode.LMENU)
 - Consider platform-specific handling
+- Low priority (Windows-focused toolkit)
 
-### 19. OPTION
+### 8. REPEAT Command
 
-**Description:** Presses the OPTION key (Mac)
+**Description:** Similar to REPLAY but with different syntax
+**Current Status:** Not implemented (REPLAY exists instead)
+**Implementation Notes:**
+
+- Consider if REPEAT is needed alongside REPLAY
+- Could be implemented as alias to REPLAY
+- Very low priority
+
+### 9. Variable Support in Commands
+
+**Description:** Support for $ variables in STRING, STRINGLN, DELAY commands
+**Current Status:** Variables can be defined but not yet used in commands
+**Implementation Notes:**
+
+- VAR command is implemented for defining variables
+- Need to add variable substitution similar to constant substitution
+- Should work in STRING, STRINGLN, DELAY commands
+- Need to implement GetVariableValue usage in SubstituteConstants method
+- High priority for completing variable system
+
+### 10. Conditional Statements (IF/ENDIF/ELSE)
+
+**Description:** Conditional execution based on variable values
 **Current Status:** Not implemented
 **Implementation Notes:**
 
-- Simple implementation in KeyboardAction method
-- Should use VirtualKeyCode.LMENU (same as ALT)
-- Consider platform-specific handling
+- Would require significant changes to parsing logic
+- Need to implement conditional parsing and execution
+- Should support boolean variable evaluation
+- Complex implementation, requires control flow handling
+- Medium priority for advanced scripting
 
-### 20. COMMANDSTRING
+### 11. WHILE/FOR Loops
 
-**Description:** Types a string using COMMAND + numpad
+**Description:** Loop constructs for repeated execution
 **Current Status:** Not implemented
 **Implementation Notes:**
 
-- Similar to ALTSTRING but for COMMAND key
-- Should use COMMAND implementation
-- Consider platform-specific handling
+- Would require major parsing changes
+- Need loop state management
+- Complex implementation
+- Low priority
 
 ## Implementation Priority
 
-1. STRINGLN (High) - Most commonly used command
-2. DEFINE (High) - Essential for variable support
-3. Function Keys (F1-F12) (Medium) - Common in scripts
-4. Navigation Keys (HOME, END, etc.) (Medium) - Common in scripts
-5. Special Keys (NUMLOCK, SCROLLLOCK, etc.) (Low) - Less commonly used
-6. Platform-specific Commands (COMMAND, OPTION) (Low) - Platform dependent
+1. **Variable substitution in commands (High)** - Complete the existing variable system
+2. **Function Keys F1-F12 (High)** - Most commonly used missing commands
+3. **Standalone ESCAPE (High)** - Common single key command
+4. **Navigation Keys (Medium)** - HOME, END, INSERT, PAGEUP, PAGEDOWN standalone
+5. **Conditional statements IF/ENDIF (Medium)** - Advance scripting capability
+6. **ALTCHAR/ALTSTRING (Medium)** - Special character support
+7. **Lock Keys (Low)** - NUMLOCK, SCROLLLOCK
+8. **Standalone BREAK/PAUSE (Low)** - Less commonly used
+9. **Platform-specific commands (Low)** - Mac compatibility
+10. **Advanced control flow (Low)** - WHILE/FOR loops
+
+## Implementation Details
+
+### Adding Variable Substitution
+
+To complete the variable system, modify the `SubstituteConstants` method in DuckyScriptProcessing.cs to also handle variables:
+
+```csharp
+private string SubstituteVariables(string input)
+{
+    if (string.IsNullOrEmpty(input)) return input;
+    
+    // Match variables in the format $VARIABLE
+    var matches = Regex.Matches(input, @"\$([A-Za-z0-9_]+)");
+    string result = input;
+    
+    foreach (Match match in matches)
+    {
+        string varName = match.Groups[1].Value;
+        if (variables.ContainsKey(varName))
+        {
+            result = result.Replace(match.Value, variables[varName].ToString());
+        }
+    }
+    
+    return result;
+}
+```
+
+Then call this method in addition to `SubstituteConstants` in STRING, STRINGLN, and DELAY commands.
+
+### Adding Function Keys
+
+Add cases for F1-F12 in the KeyboardAction method:
+
+```csharp
+case "F1":
+    CheckDefaultSleep();
+    InputSimulator.SimulateKeyPress(VirtualKeyCode.F1);
+    break;
+// ... continue for F2-F12
+```
 
 ## Notes
 
@@ -248,4 +228,5 @@ The following commands are already implemented in the codebase:
 - Each new command should be added to the Validation.cs for proper validation
 - Consider adding unit tests for new commands
 - Documentation should be updated when new commands are implemented
-- Consider adding examples in the README.md for new commands
+- The validation system is comprehensive and should be extended for new commands
+- Current constant and variable systems provide a good foundation for advanced features
