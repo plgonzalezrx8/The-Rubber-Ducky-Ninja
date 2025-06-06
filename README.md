@@ -12,6 +12,8 @@ You can find videos demonstrating this project on my YouTube channel [here.](htt
 
 The Rubber Ducky Ninja is a powerful toolkit that makes working with DuckyScripts easier and more efficient. It allows you to test your code by emulating what the ducky would do, validate your scripts before running them, and easily encode your scripts into binary format with just one click.
 
+The user interface uses a small helper (ModernStyleHelper) to apply the Segoe UI font and flat button styling, giving the forms a more modern appearance.
+
 ## In-Depth Overview
 
 ### Project Structure
