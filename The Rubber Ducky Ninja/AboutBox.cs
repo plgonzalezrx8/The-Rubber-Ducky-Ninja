@@ -23,11 +23,6 @@ namespace The_Rubber_Ducky_Ninja
             this.linkLabel1.Text = "Check for the latest version here";
             this.linkLabel2.Text = "GitHub";
             this.linkLabel3.Text = "YouTube";
-            
-            // Remove contributor labels and links
-            this.label4.Visible = false;
-            this.linkLabel4.Visible = false;
-            this.linkLabel5.Visible = false;
         }
 
         #region Assembly Attribute Accessors

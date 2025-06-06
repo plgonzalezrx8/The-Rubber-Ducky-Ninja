@@ -54,7 +54,7 @@ namespace The_Rubber_Ducky_Ninja
             // btnPath
             // 
             this.btnPath.Location = new System.Drawing.Point(9, 31);
-            this.btnPath.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPath.Margin = new System.Windows.Forms.Padding(2);
             this.btnPath.Name = "btnPath";
             this.btnPath.Size = new System.Drawing.Size(118, 21);
             this.btnPath.TabIndex = 12;
@@ -111,7 +111,7 @@ namespace The_Rubber_Ducky_Ninja
             // 
             this.btnEncodeForm.Enabled = false;
             this.btnEncodeForm.Location = new System.Drawing.Point(239, 31);
-            this.btnEncodeForm.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEncodeForm.Margin = new System.Windows.Forms.Padding(2);
             this.btnEncodeForm.Name = "btnEncodeForm";
             this.btnEncodeForm.Size = new System.Drawing.Size(143, 21);
             this.btnEncodeForm.TabIndex = 14;
@@ -123,7 +123,7 @@ namespace The_Rubber_Ducky_Ninja
             // 
             this.btnExecuteButton.Enabled = false;
             this.btnExecuteButton.Location = new System.Drawing.Point(149, 158);
-            this.btnExecuteButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnExecuteButton.Margin = new System.Windows.Forms.Padding(2);
             this.btnExecuteButton.Name = "btnExecuteButton";
             this.btnExecuteButton.Size = new System.Drawing.Size(95, 21);
             this.btnExecuteButton.TabIndex = 13;
@@ -135,7 +135,7 @@ namespace The_Rubber_Ducky_Ninja
             // 
             this.btnDebug.Enabled = false;
             this.btnDebug.Location = new System.Drawing.Point(13, 158);
-            this.btnDebug.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDebug.Margin = new System.Windows.Forms.Padding(2);
             this.btnDebug.Name = "btnDebug";
             this.btnDebug.Size = new System.Drawing.Size(89, 21);
             this.btnDebug.TabIndex = 21;
@@ -146,7 +146,7 @@ namespace The_Rubber_Ducky_Ninja
             // btnExit
             // 
             this.btnExit.Location = new System.Drawing.Point(298, 158);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(2);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(84, 21);
             this.btnExit.TabIndex = 20;
@@ -209,7 +209,7 @@ namespace The_Rubber_Ducky_Ninja
             // btnUAC
             // 
             this.btnUAC.Location = new System.Drawing.Point(239, 61);
-            this.btnUAC.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnUAC.Margin = new System.Windows.Forms.Padding(1);
             this.btnUAC.Name = "btnUAC";
             this.btnUAC.Size = new System.Drawing.Size(143, 20);
             this.btnUAC.TabIndex = 23;
@@ -238,7 +238,7 @@ namespace The_Rubber_Ducky_Ninja
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "formMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "The Rubber Ducky Ninja";
