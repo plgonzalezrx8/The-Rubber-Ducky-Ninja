@@ -14,6 +14,7 @@ namespace The_Rubber_Ducky_Ninja
         public AboutBox()
         {
             InitializeComponent();
+            ModernStyleHelper.Apply(this);
             this.Text = String.Format("About {0}", AssemblyTitle);
             this.label1.Text = "The Rubber Ducky Ninja";
             this.label2.Text = "Version: 0.6 BETA";

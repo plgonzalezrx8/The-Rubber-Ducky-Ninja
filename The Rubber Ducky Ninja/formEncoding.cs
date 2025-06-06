@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace The_Rubber_Ducky_Ninja
 {
@@ -10,6 +11,7 @@ namespace The_Rubber_Ducky_Ninja
         public formEncoding()
         {
             InitializeComponent();
+            ModernStyleHelper.Apply(this);
         }
         //Varibles
         string FilePath = "";

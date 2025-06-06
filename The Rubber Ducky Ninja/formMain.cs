@@ -4,6 +4,7 @@ using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using WindowsInput;
+using System.Drawing;
 
 namespace The_Rubber_Ducky_Ninja
 {
@@ -12,6 +13,7 @@ namespace The_Rubber_Ducky_Ninja
         public formMain()
         {
             InitializeComponent();
+            ModernStyleHelper.Apply(this);
         }
         private void formMain_Load(object sender, EventArgs e)
         {
