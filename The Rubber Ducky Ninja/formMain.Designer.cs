@@ -53,12 +53,12 @@ namespace The_Rubber_Ducky_Ninja
             // 
             // btnPath
             // 
-            this.btnPath.Location = new System.Drawing.Point(9, 31);
-            this.btnPath.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPath.Location = new System.Drawing.Point(20, 40);
+            this.btnPath.Margin = new System.Windows.Forms.Padding(4);
             this.btnPath.Name = "btnPath";
-            this.btnPath.Size = new System.Drawing.Size(118, 21);
+            this.btnPath.Size = new System.Drawing.Size(140, 35);
             this.btnPath.TabIndex = 12;
-            this.btnPath.Text = "Load DuckyScript";
+            this.btnPath.Text = "📁 Load DuckyScript";
             this.btnPath.UseVisualStyleBackColor = true;
             this.btnPath.Click += new System.EventHandler(this.btnPath_Click);
             // 
@@ -69,88 +69,88 @@ namespace The_Rubber_Ducky_Ninja
             // PathLabel
             // 
             this.PathLabel.AutoSize = true;
-            this.PathLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PathLabel.Location = new System.Drawing.Point(10, 54);
+            this.PathLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PathLabel.Location = new System.Drawing.Point(20, 82);
             this.PathLabel.Name = "PathLabel";
             this.PathLabel.Size = new System.Drawing.Size(88, 13);
             this.PathLabel.TabIndex = 18;
-            this.PathLabel.Text = "No path selected";
+            this.PathLabel.Text = "No file selected";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.SystemColors.Control;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(7, 101);
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(20, 120);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(367, 26);
+            this.label2.Size = new System.Drawing.Size(360, 26);
             this.label2.TabIndex = 17;
-            this.label2.Text = "This emulator tends to run DuckyScript faster than a Ducky would. \r\nYou can set a" +
-    "n additional delay between each function here (in milliseconds)";
+            this.label2.Text = "This emulator runs DuckyScript faster than a physical Ducky.\r\nSet additional delay between commands (milliseconds):";
             // 
             // btnDelay
             // 
             this.btnDelay.Enabled = false;
-            this.btnDelay.Location = new System.Drawing.Point(9, 79);
+            this.btnDelay.Location = new System.Drawing.Point(180, 150);
             this.btnDelay.Name = "btnDelay";
-            this.btnDelay.Size = new System.Drawing.Size(79, 20);
+            this.btnDelay.Size = new System.Drawing.Size(90, 32);
             this.btnDelay.TabIndex = 16;
-            this.btnDelay.Text = "Set Delay";
+            this.btnDelay.Text = "⏱️ Set Delay";
             this.btnDelay.UseVisualStyleBackColor = true;
             this.btnDelay.Click += new System.EventHandler(this.btnDelay_Click);
             // 
             // SetDelayTextBox
             // 
             this.SetDelayTextBox.Enabled = false;
-            this.SetDelayTextBox.Location = new System.Drawing.Point(93, 82);
+            this.SetDelayTextBox.Location = new System.Drawing.Point(20, 155);
             this.SetDelayTextBox.Name = "SetDelayTextBox";
-            this.SetDelayTextBox.Size = new System.Drawing.Size(82, 20);
+            this.SetDelayTextBox.Size = new System.Drawing.Size(150, 22);
             this.SetDelayTextBox.TabIndex = 15;
+            this.SetDelayTextBox.Text = "1000";
             // 
             // btnEncodeForm
             // 
             this.btnEncodeForm.Enabled = false;
-            this.btnEncodeForm.Location = new System.Drawing.Point(239, 31);
-            this.btnEncodeForm.Margin = new System.Windows.Forms.Padding(2);
+            this.btnEncodeForm.Location = new System.Drawing.Point(280, 40);
+            this.btnEncodeForm.Margin = new System.Windows.Forms.Padding(4);
             this.btnEncodeForm.Name = "btnEncodeForm";
-            this.btnEncodeForm.Size = new System.Drawing.Size(143, 21);
+            this.btnEncodeForm.Size = new System.Drawing.Size(160, 35);
             this.btnEncodeForm.TabIndex = 14;
-            this.btnEncodeForm.Text = "DuckyScript Encoder";
+            this.btnEncodeForm.Text = "🔧 Encode to Binary";
             this.btnEncodeForm.UseVisualStyleBackColor = true;
             this.btnEncodeForm.Click += new System.EventHandler(this.btnEncodeForm_Click);
             // 
             // btnExecuteButton
             // 
             this.btnExecuteButton.Enabled = false;
-            this.btnExecuteButton.Location = new System.Drawing.Point(149, 158);
-            this.btnExecuteButton.Margin = new System.Windows.Forms.Padding(2);
+            this.btnExecuteButton.Location = new System.Drawing.Point(170, 200);
+            this.btnExecuteButton.Margin = new System.Windows.Forms.Padding(4);
             this.btnExecuteButton.Name = "btnExecuteButton";
-            this.btnExecuteButton.Size = new System.Drawing.Size(95, 21);
+            this.btnExecuteButton.Size = new System.Drawing.Size(130, 40);
             this.btnExecuteButton.TabIndex = 13;
-            this.btnExecuteButton.Text = "Execute Script";
+            this.btnExecuteButton.Text = "▶️ Execute Script";
             this.btnExecuteButton.UseVisualStyleBackColor = true;
             this.btnExecuteButton.Click += new System.EventHandler(this.btnExecuteButton_Click);
             // 
             // btnDebug
             // 
             this.btnDebug.Enabled = false;
-            this.btnDebug.Location = new System.Drawing.Point(13, 158);
-            this.btnDebug.Margin = new System.Windows.Forms.Padding(2);
+            this.btnDebug.Location = new System.Drawing.Point(20, 200);
+            this.btnDebug.Margin = new System.Windows.Forms.Padding(4);
             this.btnDebug.Name = "btnDebug";
-            this.btnDebug.Size = new System.Drawing.Size(89, 21);
+            this.btnDebug.Size = new System.Drawing.Size(130, 40);
             this.btnDebug.TabIndex = 21;
-            this.btnDebug.Text = "Validate Code";
+            this.btnDebug.Text = "✅ Validate Code";
             this.btnDebug.UseVisualStyleBackColor = true;
             this.btnDebug.Click += new System.EventHandler(this.btnDebug_Click);
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(298, 158);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(2);
+            this.btnExit.Location = new System.Drawing.Point(350, 200);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(4);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(84, 21);
+            this.btnExit.Size = new System.Drawing.Size(90, 40);
             this.btnExit.TabIndex = 20;
-            this.btnExit.Text = "Exit";
+            this.btnExit.Text = "❌ Exit";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
@@ -165,7 +165,7 @@ namespace The_Rubber_Ducky_Ninja
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 1, 0, 1);
-            this.menuStrip1.Size = new System.Drawing.Size(387, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(460, 24);
             this.menuStrip1.TabIndex = 22;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -208,12 +208,12 @@ namespace The_Rubber_Ducky_Ninja
             // 
             // btnUAC
             // 
-            this.btnUAC.Location = new System.Drawing.Point(239, 61);
-            this.btnUAC.Margin = new System.Windows.Forms.Padding(1);
+            this.btnUAC.Location = new System.Drawing.Point(280, 85);
+            this.btnUAC.Margin = new System.Windows.Forms.Padding(2);
             this.btnUAC.Name = "btnUAC";
-            this.btnUAC.Size = new System.Drawing.Size(143, 20);
+            this.btnUAC.Size = new System.Drawing.Size(160, 32);
             this.btnUAC.TabIndex = 23;
-            this.btnUAC.Text = "UAC Enabled? Click Here";
+            this.btnUAC.Text = "🛡️ UAC Settings";
             this.btnUAC.UseVisualStyleBackColor = true;
             this.btnUAC.Click += new System.EventHandler(this.btnUAC_Click);
             // 
@@ -223,7 +223,7 @@ namespace The_Rubber_Ducky_Ninja
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(387, 191);
+            this.ClientSize = new System.Drawing.Size(460, 260);
             this.Controls.Add(this.btnUAC);
             this.Controls.Add(this.btnPath);
             this.Controls.Add(this.PathLabel);
@@ -238,10 +238,11 @@ namespace The_Rubber_Ducky_Ninja
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.MinimumSize = new System.Drawing.Size(460, 260);
             this.Name = "formMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "The Rubber Ducky Ninja";
+            this.Text = "The Rubber Ducky Ninja - Modern Edition";
             this.Load += new System.EventHandler(this.formMain_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="The_Rubber_Ducky_Ninja_WinUI3.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title Bar -->
+        <Border Grid.Row="0" Background="{ThemeResource SystemAccentColorBrush}" Height="40">
+            <TextBlock Text="🥷 The Rubber Ducky Ninja" 
+                       VerticalAlignment="Center" 
+                       Margin="16,0"
+                       FontSize="16" 
+                       FontWeight="SemiBold"
+                       Foreground="White"/>
+        </Border>
+
+        <!-- Main Content -->
+        <ScrollViewer Grid.Row="1" Margin="20">
+            <StackPanel Spacing="24" MaxWidth="600">
+                
+                <!-- Header Card -->
+                <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        CornerRadius="8"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                        BorderThickness="1"
+                        Padding="24">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="DuckyScript Emulator" 
+                                   Style="{ThemeResource TitleTextBlockStyle}"/>
+                        <TextBlock Text="Test and validate your DuckyScript payloads before deploying to hardware"
+                                   Style="{ThemeResource BodyTextBlockStyle}"
+                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- File Selection Card -->
+                <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        CornerRadius="8"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                        BorderThickness="1"
+                        Padding="24">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="📁 Script File" Style="{ThemeResource SubtitleTextBlockStyle}"/>
+                        
+                        <Button x:Name="LoadFileButton"
+                                Content="Load DuckyScript File"
+                                Style="{ThemeResource AccentButtonStyle}"
+                                Click="LoadFileButton_Click"
+                                HorizontalAlignment="Left"/>
+                        
+                        <TextBlock x:Name="FilePathDisplay" 
+                                   Text="No file selected"
+                                   Style="{ThemeResource CaptionTextBlockStyle}"
+                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Configuration Card -->
+                <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        CornerRadius="8"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                        BorderThickness="1"
+                        Padding="24">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="⚙️ Configuration" Style="{ThemeResource SubtitleTextBlockStyle}"/>
+                        
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Execution Delay (milliseconds)" Style="{ThemeResource BodyTextBlockStyle}"/>
+                            <TextBlock Text="This emulator runs faster than physical hardware. Add delay between commands:"
+                                       Style="{ThemeResource CaptionTextBlockStyle}"
+                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                       TextWrapping="Wrap"/>
+                            
+                            <StackPanel Orientation="Horizontal" Spacing="12">
+                                <NumberBox x:Name="DelayNumberBox" 
+                                           Value="1000"
+                                           Minimum="0" 
+                                           Maximum="10000"
+                                           Width="120"
+                                           PlaceholderText="1000"/>
+                                <Button x:Name="SetDelayButton"
+                                        Content="Set Delay"
+                                        Click="SetDelayButton_Click"
+                                        IsEnabled="False"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <!-- UAC Warning -->
+                        <InfoBar x:Name="UACInfoBar"
+                                 Severity="Warning"
+                                 Title="UAC Notice"
+                                 Message="User Account Control may block keyboard simulation. Click for settings."
+                                 IsOpen="True"
+                                 ActionButton="{x:Bind UACSettingsButton}">
+                            <InfoBar.ActionButton>
+                                <Button x:Name="UACSettingsButton" 
+                                        Content="UAC Settings" 
+                                        Click="UACSettingsButton_Click"/>
+                            </InfoBar.ActionButton>
+                        </InfoBar>
+                    </StackPanel>
+                </Border>
+
+                <!-- Actions Card -->
+                <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        CornerRadius="8"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                        BorderThickness="1"
+                        Padding="24">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="🚀 Actions" Style="{ThemeResource SubtitleTextBlockStyle}"/>
+                        
+                        <StackPanel Orientation="Horizontal" Spacing="12" HorizontalAlignment="Center">
+                            <Button x:Name="ValidateButton"
+                                    Content="✅ Validate Script"
+                                    Click="ValidateButton_Click"
+                                    IsEnabled="False"
+                                    Width="140"
+                                    Height="40"/>
+                            
+                            <Button x:Name="ExecuteButton"
+                                    Content="▶️ Execute Script"
+                                    Style="{ThemeResource AccentButtonStyle}"
+                                    Click="ExecuteButton_Click"
+                                    IsEnabled="False"
+                                    Width="140"
+                                    Height="40"/>
+                            
+                            <Button x:Name="EncodeButton"
+                                    Content="🔧 Encode to Binary"
+                                    Click="EncodeButton_Click"
+                                    IsEnabled="False"
+                                    Width="140"
+                                    Height="40"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- Menu Actions -->
+                <StackPanel Orientation="Horizontal" Spacing="12" HorizontalAlignment="Center">
+                    <Button Content="📝 Edit Script" 
+                            Click="EditButton_Click"
+                            IsEnabled="False"
+                            x:Name="EditButton"/>
+                    <Button Content="💾 System Restore" 
+                            Click="RestoreButton_Click"/>
+                    <Button Content="❓ About" 
+                            Click="AboutButton_Click"/>
+                </StackPanel>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window> 

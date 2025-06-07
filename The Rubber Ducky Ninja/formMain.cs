@@ -4,6 +4,7 @@ using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using WindowsInput;
+using System.Drawing;
 
 namespace The_Rubber_Ducky_Ninja
 {
@@ -12,7 +13,95 @@ namespace The_Rubber_Ducky_Ninja
         public formMain()
         {
             InitializeComponent();
+            ApplyModernStyling();
         }
+
+        private void ApplyModernStyling()
+        {
+            // Modern Color Scheme (Dark theme inspired)
+            this.BackColor = Color.FromArgb(32, 32, 32);          // Dark background
+            this.ForeColor = Color.FromArgb(220, 220, 220);       // Light text
+
+            // Modern Font
+            Font modernFont = new Font("Segoe UI", 9F, FontStyle.Regular);
+            Font headerFont = new Font("Segoe UI", 10F, FontStyle.SemiBold);
+            
+            this.Font = modernFont;
+
+            // Style Labels
+            PathLabel.ForeColor = Color.FromArgb(160, 160, 160);
+            label2.ForeColor = Color.FromArgb(160, 160, 160);
+            label2.Font = new Font("Segoe UI", 8.25F);
+
+            // Style Primary Action Buttons (Accent Blue)
+            StylePrimaryButton(btnExecuteButton, Color.FromArgb(0, 120, 215));
+            StylePrimaryButton(btnDebug, Color.FromArgb(16, 137, 62));  // Green for validation
+
+            // Style Secondary Buttons
+            StyleSecondaryButton(btnPath);
+            StyleSecondaryButton(btnEncodeForm);
+            StyleSecondaryButton(btnDelay);
+            StyleSecondaryButton(btnUAC);
+
+            // Style Exit Button (Red accent)
+            StyleDangerButton(btnExit);
+
+            // Style TextBox
+            SetDelayTextBox.BackColor = Color.FromArgb(45, 45, 45);
+            SetDelayTextBox.ForeColor = Color.White;
+            SetDelayTextBox.BorderStyle = BorderStyle.FixedSingle;
+
+            // Style MenuStrip
+            menuStrip1.BackColor = Color.FromArgb(40, 40, 40);
+            menuStrip1.ForeColor = Color.White;
+            
+            // Modern Window Settings
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;  // Remove 3D border
+            this.MaximizeBox = false;  // Cleaner look
+        }
+
+        private void StylePrimaryButton(Button btn, Color accentColor)
+        {
+            btn.BackColor = accentColor;
+            btn.ForeColor = Color.White;
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.FlatAppearance.BorderSize = 0;
+            btn.FlatAppearance.MouseOverBackColor = ControlPaint.Light(accentColor, 0.1f);
+            btn.FlatAppearance.MouseDownBackColor = ControlPaint.Dark(accentColor, 0.1f);
+            btn.Font = new Font("Segoe UI", 9F, FontStyle.SemiBold);
+            btn.Cursor = Cursors.Hand;
+            
+            // Add some padding
+            btn.Size = new Size(btn.Width, 32);
+        }
+
+        private void StyleSecondaryButton(Button btn)
+        {
+            btn.BackColor = Color.FromArgb(60, 60, 60);
+            btn.ForeColor = Color.White;
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.FlatAppearance.BorderColor = Color.FromArgb(100, 100, 100);
+            btn.FlatAppearance.BorderSize = 1;
+            btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(80, 80, 80);
+            btn.FlatAppearance.MouseDownBackColor = Color.FromArgb(50, 50, 50);
+            btn.Cursor = Cursors.Hand;
+            
+            btn.Size = new Size(btn.Width, 32);
+        }
+
+        private void StyleDangerButton(Button btn)
+        {
+            btn.BackColor = Color.FromArgb(196, 43, 28);  // Red
+            btn.ForeColor = Color.White;
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.FlatAppearance.BorderSize = 0;
+            btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(220, 60, 45);
+            btn.FlatAppearance.MouseDownBackColor = Color.FromArgb(170, 35, 20);
+            btn.Cursor = Cursors.Hand;
+            
+            btn.Size = new Size(btn.Width, 32);
+        }
+
         private void formMain_Load(object sender, EventArgs e)
         {
             if (!File.Exists("duckencode.jar"))
@@ -76,6 +165,11 @@ namespace The_Rubber_Ducky_Ninja
 
         private void btnDebug_Click(object sender, EventArgs e)
         {
+            // Add visual feedback
+            btnDebug.Text = "🔄 Validating...";
+            btnDebug.Enabled = false;
+            Application.DoEvents(); // Allow UI update
+            
             if (DuckyScriptProcessing.validateCode(FilePath) == true) //Validate code
             {
                 btnExecuteButton.Enabled = true;
@@ -83,21 +177,58 @@ namespace The_Rubber_Ducky_Ninja
                 {
                     btnEncodeForm.Enabled = true;
                 }
-                MessageBox.Show("No problems found in code");
+                
+                // Success feedback
+                btnDebug.Text = "✅ Validation Complete";
+                btnDebug.BackColor = Color.FromArgb(16, 137, 62); // Green
+                
+                // Show modern message box
+                ShowModernMessage("✅ Success", "No problems found in code!", MessageBoxIcon.Information);
             }
+            else
+            {
+                // Error feedback
+                btnDebug.Text = "❌ Validation Failed";
+                btnDebug.BackColor = Color.FromArgb(196, 43, 28); // Red
+            }
+            
+            // Reset button after 2 seconds
+            System.Windows.Forms.Timer resetTimer = new System.Windows.Forms.Timer();
+            resetTimer.Interval = 2000;
+            resetTimer.Tick += (s, args) => {
+                btnDebug.Text = "✅ Validate Code";
+                btnDebug.Enabled = true;
+                ApplyModernStyling(); // Reapply styling
+                resetTimer.Stop();
+                resetTimer.Dispose();
+            };
+            resetTimer.Start();
         }
 
         private void btnExecuteButton_Click(object sender, EventArgs e)
         {
             if (File.Exists(FilePath))
             {
+                // Visual feedback
+                btnExecuteButton.Text = "⏳ Executing...";
+                btnExecuteButton.Enabled = false;
+                this.Cursor = Cursors.WaitCursor;
+                Application.DoEvents();
+                
                 Thread.Sleep(500); //gives user a second to take hand off mouse
                 InputSimulator.SimulateModifiedKeyStroke(VirtualKeyCode.LWIN, VirtualKeyCode.VK_D);
                 Thread.Sleep(500);
                 DuckyScriptProcessing.ReadFile(FilePath); //emulate code
+                
+                // Reset UI
+                btnExecuteButton.Text = "▶️ Execute Script";
+                btnExecuteButton.Enabled = true;
+                this.Cursor = Cursors.Default;
+                
+                ShowModernMessage("🎯 Execution Complete", "Script execution finished successfully!", MessageBoxIcon.Information);
             } else
             {
-                MessageBox.Show("Your file " + FilePath + " can longer be found. Please load the script again");
+                ShowModernMessage("❌ File Not Found", $"Your file {FilePath} can no longer be found. Please load the script again.", MessageBoxIcon.Error);
             }
         }
 
@@ -182,9 +313,10 @@ namespace The_Rubber_Ducky_Ninja
         {
             Stream myStream = null;
             OpenFileDialog theDialog = new OpenFileDialog();
-            theDialog.Title = "Open DuckyScript Text File";
-            theDialog.Filter = "TXT files|*.txt";
+            theDialog.Title = "Select DuckyScript File";
+            theDialog.Filter = "DuckyScript files (*.txt)|*.txt|All files (*.*)|*.*";
             theDialog.RestoreDirectory = true;
+            
             if (theDialog.ShowDialog() == DialogResult.OK)
             {
                 try
